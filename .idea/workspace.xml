@@ -5,35 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8706a631-834e-4449-80d1-a30462d91e70" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/affichage_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/affichage_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ancien_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/ancien_code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/annuiare.db" beforeDir="false" afterPath="$PROJECT_DIR$/annuiare.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base_donnee.py" beforeDir="false" afterPath="$PROJECT_DIR$/base_donnee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/education.py" beforeDir="false" afterPath="$PROJECT_DIR$/education.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.departement.xlsx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.direction_statistique.xlsx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.domaine.xlsx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.groupe_age#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.indicateurs.xlsx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.sexe#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.sous_domaine.xlsx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.sous_prefecture.xlsx#" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/.~lock.sous_prefecture.xlsx#" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/departement.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/departement.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/direction_statistique.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/direction_statistique.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/groupe_age" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/groupe_age" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/register_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/register_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_xlsx/sous_prefecture.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/sous_prefecture.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/form_get.py" beforeDir="false" afterPath="$PROJECT_DIR$/form_get.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formulaire_saisie_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/formulaire_saisie_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/population.py" beforeDir="false" afterPath="$PROJECT_DIR$/population.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sante.py" beforeDir="false" afterPath="$PROJECT_DIR$/sante.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_xlsx/.~lock.sous_prefecture.xlsx#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_app1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_app1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

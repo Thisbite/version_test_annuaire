@@ -122,11 +122,11 @@ else:
     st.warning("Aucune entité géographique trouvée pour le code saisi ou absence d'indicateur")
 
 
-st.title("Les données disponibles")
+#st.title("Les données disponibles")
 
-df_valeurs_indicateurs =go.get_valeurs_indicateurs()
+#df_valeurs_indicateurs =go.get_valeurs_indicateurs()
 
-if not df_valeurs_indicateurs.empty:
-    st.dataframe(df_valeurs_indicateurs)
-else:
-    st.write("No data available.")
+#if not df_valeurs_indicateurs.empty:
+ #   st.dataframe(df_valeurs_indicateurs)
+#else:
+  #  st.write("No data available.")
