@@ -22,58 +22,66 @@ st.markdown("""
             margin: 20px 0;
             border-bottom: 1px solid #ddd;
         }
+        .expander-wrapper {
+            border: 2px solid blue;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px; /* Space between expanders */
+        }
     </style>
 """, unsafe_allow_html=True)
-
 st.title("Formulaire de collecte")
 
-code_entite = st.number_input("Saisie le code de l'entité géographique ", min_value=0, step=1)
+with st.expander("Entrée de code d'entité géographique"):
+    code_entite = st.number_input("Saisie le code de l'entité géographique ", min_value=0, step=1)
 
-entity_type, entity_name = go.get_geographical_entity_name(code_entite)
+    entity_type, entity_name = go.get_geographical_entity_name(code_entite)
 
-if entity_type and entity_name:
-    st.write(f"Entité géographie trouvée  : {entity_type}")
-    st.write(f"Nom: {entity_name}")
+    if entity_type and entity_name:
+        st.write(f"Entité géographie trouvée  : {entity_type}")
+        st.write(f"Nom: {entity_name}")
 
-region_id = None
-department_id = None
-sous_prefecture_id = None
+    region_id = None
+    department_id = None
+    sous_prefecture_id = None
 
-# Nouveau code et test
-region = go.get_region_name(code_entite) if code_entite else None
-department = go.get_department_name(code_entite) if code_entite else None
-sous_prefecture = go.get_sous_prefecture_name(code_entite) if code_entite else None
+    # Nouveau code et test
+    region = go.get_region_name(code_entite) if code_entite else None
+    department = go.get_department_name(code_entite) if code_entite else None
+    sous_prefecture = go.get_sous_prefecture_name(code_entite) if code_entite else None
 
-if region:
-    region_id = code_entite
+    if region:
+        region_id = code_entite
 
-if department:
-    department_id = code_entite
+    if department:
+        department_id = code_entite
 
-if sous_prefecture:
-    sous_prefecture_id = code_entite
+    if sous_prefecture:
+        sous_prefecture_id = code_entite
 
 
-
-st.markdown('<div class="form-divider"></div>', unsafe_allow_html=True)
-ind=st.number_input("Entrez le code du domaine")
+with st.expander("Code domaine"):
+    ind = st.number_input("Entrez le code du domaine")
 indicators = go.get_indicators(ind)
 indicator_options = {ind[1]: ind[0] for ind in indicators}
 sexes = go.get_sexes()
 sexe_options1 = {sex[1]: sex[0] for sex in sexes}
 sexe_options1 = {"": None, **sexe_options1}
 
-selected_indicator = st.selectbox("Choisir un Indicateur", list(indicator_options.keys()))
-st.markdown('<div class="form-divider"></div>', unsafe_allow_html=True)
-
-level_of_disaggregation = st.selectbox("Niveau de Désagrégation", ["Sexe", "Groupe d'âge"])
+with st.expander("Liste indicateurs"):
+    selected_indicator = st.selectbox("Choisir un Indicateur", list(indicator_options.keys()))
 
 st.markdown('<div class="form-divider"></div>', unsafe_allow_html=True)
-annee = st.number_input(f"Année pour ", min_value=2000, max_value=2100, step=1, key=f"year_g")
+with st.expander("Niveau désagrégation"):
+    level_of_disaggregation = st.selectbox("choisir le niveau", ["Sexe", "Groupe d'âge"])
+
+    st.markdown('<div class="form-divider"></div>', unsafe_allow_html=True)
+
+    annee = st.number_input(f"Saisie l'année ", min_value=2000, max_value=2100, step=1, key=f"year_g")
 
 if entity_type and entity_name and selected_indicator:
     with st.form("data_entry_form"):
-        if level_of_disaggregation =="Sexe":
+        if level_of_disaggregation == "Sexe":
             sexe_options = {sex[1]: sex[0] for sex in sexes}
             valeurs = []
             annees = []
@@ -120,13 +128,3 @@ if entity_type and entity_name and selected_indicator:
                 st.success("Valeurs pour Groupe d'âge enregistrées avec succès.")
 else:
     st.warning("Aucune entité géographique trouvée pour le code saisi ou absence d'indicateur")
-
-
-#st.title("Les données disponibles")
-
-#df_valeurs_indicateurs =go.get_valeurs_indicateurs()
-
-#if not df_valeurs_indicateurs.empty:
- #   st.dataframe(df_valeurs_indicateurs)
-#else:
-  #  st.write("No data available.")
