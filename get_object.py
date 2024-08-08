@@ -223,13 +223,13 @@ def get_valeurs_indicateurs():
         st.error(f"Exception in get_valeurs_indicateurs: {e}")
         return pd.DataFrame()
     return df
-def insert_value(indicator_id, region_id, department_id, sous_prefecture_id, sexe_id, valeur, annee, groupe_age_id=None):
+def insert_value(indicator_id, region_id, department_id, sous_prefecture_id, sexe_id, valeur, annee, groupe_age_id):
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO ValeursIndicateurs (f_region_id, f_departement_id, f_sous_prefecture_id, f_indicateur_id, 
-                                                f_sexe_id, Valeur, Annee, f_grp_age_id)
+                                                f_sexe_id, Valeur, Annee, f_cycle_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """, (region_id, department_id, sous_prefecture_id, indicator_id, sexe_id, valeur, annee, groupe_age_id))
             conn.commit()

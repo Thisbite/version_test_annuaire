@@ -1,6 +1,8 @@
 import streamlit as st
 import get_object as go
 
+import get_domaine_condt_vie_menage as gvie
+
 # CSS for styling the form
 st.markdown("""
     <style>
@@ -94,11 +96,11 @@ if entity_type and entity_name and selected_indicator:
 
             if st.form_submit_button(f"Enregistrer Valeurs"):
                 for sexe_id, valeur, annee in zip(sexe_ids, valeurs, annees):
-                    print(f"Inserting: {indicator_options[selected_indicator]}, {region_id}, {department_id}, {sous_prefecture_id}, {sexe_id}, {valeur}, {annee}, None")
-                    go.insert_value(
-                        indicator_options[selected_indicator], region_id,
-                        department_id, sous_prefecture_id,
-                        sexe_id, valeur, annee, None
+
+                    gvie.insert_value_cdt_vie(
+                        indicator_id=indicator_options[selected_indicator],region_id= region_id,
+                        department_id=department_id, sous_prefecture_id=sous_prefecture_id,
+                        sexe_id=sexe_id, valeur=valeur, annee=annee
                     )
                 st.success("Valeurs enregistrées avec succès.")
 
@@ -119,11 +121,10 @@ if entity_type and entity_name and selected_indicator:
 
             if st.form_submit_button(f"Enregistrer Valeurs pour Groupe d'âge"):
                 for grpe_age_id, valeur, annee, sexe_id in zip(groupe_age_ids, valeurs, annees, sexe_ids):
-                    print(f"Inserting: {indicator_options[selected_indicator]}, {region_id}, {department_id}, {sous_prefecture_id}, {sexe_id}, {valeur}, {annee}, {grpe_age_id}")
-                    go.insert_value(
-                        indicator_options[selected_indicator], region_id,
-                        department_id, sous_prefecture_id,
-                        sexe_id, valeur, annee, grpe_age_id
+                    gvie.insert_value_cdt_vie(
+                        indicator_id=indicator_options[selected_indicator],region_id= region_id,
+                        department_id=department_id, sous_prefecture_id=sous_prefecture_id,
+                        sexe_id=sexe_id, valeur=valeur, annee=annee, groupe_age_id=grpe_age_id
                     )
                 st.success("Valeurs pour Groupe d'âge enregistrées avec succès.")
 else:

@@ -109,6 +109,15 @@ conn.commit()
 #Groupe d'âge 
 """
 
+#Cycle
+df = pd.read_excel('prescolaire.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Prescolaire(id,nom) VALUES ( ?, ?)",
+                  (row['id'], row['Niveau_Prescolaire']))
+
+# Valider les modifications
+conn.commit()
 
 
 
