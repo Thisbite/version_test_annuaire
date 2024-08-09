@@ -3,9 +3,7 @@ import sqlite3
 conn = sqlite3.connect('annuiare.db')
 cursor = conn.cursor()
 #cursor.execute("DROP TABLE ValeursIndicateurs ")
-#cursor.execute("DROP TABLE Departement")
 
-import sqlite3
 
 def create_tables():
     # Connect to the SQLite database (or create it if it doesn't exist)
@@ -116,47 +114,207 @@ def create_tables():
     conn.close()
 
 # Call the function to create the tables
-create_tables()
 
-def base_donne_condt_vie_menage(db_name):
-    # Connexion à la base de données
-    conn = sqlite3.connect(db_name)
+
+def nv_base():
+    # Connect to the SQLite database (or create it if it doesn't exist)
+    conn = sqlite3.connect('annuiare.db')
     cursor = conn.cursor()
 
-    # Liste des tables à créer
-    tables = [
-        "Cycle", "Niveau_Prescolaire", "Niveau_Primaire", "Niveau_Secondaire_1er_cycle",
-        "Niveau_Secondaire_2nd_cycle", "Niveau_Technique", "Niveau_Superieur",
-        "Niveau_Professionnel", "Type_examen", "Infrastructures_sanitaires",
-        "Lieu_accouchement", "Etat_vaccinal", "Types_de_vaccination", "Pathologie",
-        "Tranche_age", "Maladies_du_PEV", "Maladies_infectieuses", "Maladies_IST",
-        "Type_de_Maladie", "Activites_IEC", "Service_Medicaux",
-        "Type_infrastructures_ou_organisations_sportives", "Disciplines_sportives",
-        "Type_infrastructures_culturelles", "Type_de_Patrimoines_culturels_immatériels",
-        "Type_actions_culturelles_et_artistiques", "Type_operateurs_des_oeuvres_esprit",
-        "Type_de_groupes_culturels", "Type_de_manifestations_culturelles"
-    ]
-
-    # Création des tables
-    for table in tables:
-        # Remplacez les espaces par des underscores pour les noms de tables
-        table_name = table.replace(" ", "_")
-        create_table_query = f"""
-        CREATE TABLE IF NOT EXISTS {table_name} (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nom TEXT NOT NULL
+    create_table_commands = [
+        """
+        CREATE TABLE IF NOT EXISTS Cycle (
+            id_cycle INTEGER PRIMARY KEY,
+            nom_cycle TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Prescolaire (
+            niv_prescolaire_id INTEGER PRIMARY KEY,
+            nom_prescolaire TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Primaire (
+            niv_primaire_id INTEGER PRIMARY KEY,
+            nom_primaire TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Secondaire_1er_cycle (
+            niv_secondaire_1er_cycle_id INTEGER PRIMARY KEY,
+            nom_secondaire_1er_cycle TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Secondaire_2nd_cycle (
+            niv_secondaire_2nd_cycle_id INTEGER PRIMARY KEY,
+            nom_secondaire_2nd_cycle TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Technique (
+            niv_technique_id INTEGER PRIMARY KEY,
+            nom_technique TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Superieur (
+            niv_superieur_id INTEGER PRIMARY KEY,
+            nom_superieur TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau_Professionnel (
+            niv_professionnel_id INTEGER PRIMARY KEY,
+            nom_professionnel TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_examen (
+            id_type_examen INTEGER PRIMARY KEY,
+            nom_type_examen TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Infrastructures_sanitaires (
+            id_infrastructures_sanitaires INTEGER PRIMARY KEY,
+            nom_infrastructures_sanitaires TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Lieu_accouchement (
+            id_lieu_accouchement INTEGER PRIMARY KEY,
+            nom_lieu_accouchement TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Etat_vaccinal (
+            id_etat_vaccinal INTEGER PRIMARY KEY,
+            nom_etat_vaccinal TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Types_de_vaccination (
+            id_types_de_vaccination INTEGER PRIMARY KEY,
+            nom_types_de_vaccination TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Pathologie (
+            id_pathologie INTEGER PRIMARY KEY,
+            nom_pathologie TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Tranche_age (
+            id_tranche_age INTEGER PRIMARY KEY,
+            nom_tranche_age TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Maladies_du_PEV (
+            id_maladies_du_pev INTEGER PRIMARY KEY,
+            nom_maladies_du_pev TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Maladies_infectieuses (
+            id_maladies_infectieuses INTEGER PRIMARY KEY,
+            nom_maladies_infectieuses TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Maladies_IST (
+            id_maladies_ist INTEGER PRIMARY KEY,
+            nom_maladies_ist TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de_Maladie (
+            id_type_de_maladie INTEGER PRIMARY KEY,
+            nom_type_de_maladie TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Activites_IEC (
+            id_activites_iec INTEGER PRIMARY KEY,
+            nom_activites_iec TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Service_Medicaux (
+            id_service_medicaux INTEGER PRIMARY KEY,
+            nom_service_medicaux TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_infrastructures_ou_organisations_sportives (
+            id_type_infrastructures_sportives INTEGER PRIMARY KEY,
+            nom_type_infrastructures_sportives TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Disciplines_sportives (
+            id_disciplines_sportives INTEGER PRIMARY KEY,
+            nom_disciplines_sportives TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_infrastructures_culturelles (
+            id_type_infrastructures_culturelles INTEGER PRIMARY KEY,
+            nom_type_infrastructures_culturelles TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de_Patrimoines_culturels_immatériels (
+            id_type_patrimoines_culturels_immatériels INTEGER PRIMARY KEY,
+            nom_type_patrimoines_culturels_immatériels TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_actions_culturelles_et_artistiques (
+            id_type_actions_culturelles_artistiques INTEGER PRIMARY KEY,
+            nom_type_actions_culturelles_artistiques TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_operateurs_des_oeuvres_esprit (
+            id_type_operateurs_oeuvres_esprit INTEGER PRIMARY KEY,
+            nom_type_operateurs_oeuvres_esprit TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de_groupes_culturels (
+            id_type_groupes_culturels INTEGER PRIMARY KEY,
+            nom_type_groupes_culturels TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de_manifestations_culturelles (
+            id_type_manifestations_culturelles INTEGER PRIMARY KEY,
+            nom_type_manifestations_culturelles TEXT
         );
         """
-        cursor.execute(create_table_query)
-        print(f"Table {table_name} créée avec succès.")
+    ]
 
-    # Fermeture de la connexion
+    # Execute each create table command
+    for command in create_table_commands:
+        try:
+            cursor.execute(command)
+            print(f"Table créée avec succès avec la commande :\n{command}")
+        except sqlite3.Error as e:
+            print(f"Une erreur est survenue : {e.args[0]}")
+
+    # Commit the changes and close the connection
     conn.commit()
     conn.close()
-    print("Base de données créée et tables ajoutées avec succès.")
+"""
+Exécution de la fonction 
+"""
 
-# Utilisation de la fonction
-base_donne_condt_vie_menage('annuiare.db')
+import sqlite3
+
 
 def create_valeurs_indicateurs_table(db_name):
     conn = sqlite3.connect(db_name)
@@ -210,37 +368,38 @@ def create_valeurs_indicateurs_table(db_name):
         FOREIGN KEY (f_sexe_id) REFERENCES Sexe(sexe_id),
         FOREIGN KEY (f_grp_age_id) REFERENCES GroupeAge(grp_age_id),
         FOREIGN KEY (f_age_id) REFERENCES Age(age_id),
-        FOREIGN KEY (f_cycle_id) REFERENCES Cycle(id),
-        FOREIGN KEY (f_niveau_prescolaire_id) REFERENCES Niveau_Prescolaire(id),
-        FOREIGN KEY (f_niveau_primaire_id) REFERENCES Niveau_Primaire(id),
-        FOREIGN KEY (f_niveau_secondaire_1er_cycle_id) REFERENCES Niveau_Secondaire_1er_cycle(id),
-        FOREIGN KEY (f_niveau_secondaire_2nd_cycle_id) REFERENCES Niveau_Secondaire_2nd_cycle(id),
-        FOREIGN KEY (f_niveau_technique_id) REFERENCES Niveau_Technique(id),
-        FOREIGN KEY (f_niveau_superieur_id) REFERENCES Niveau_Superieur(id),
-        FOREIGN KEY (f_niveau_professionnel_id) REFERENCES Niveau_Professionnel(id),
-        FOREIGN KEY (f_type_examen_id) REFERENCES Type_examen(id),
-        FOREIGN KEY (f_infrastructures_sanitaires_id) REFERENCES Infrastructures_sanitaires(id),
-        FOREIGN KEY (f_lieu_accouchement_id) REFERENCES Lieu_accouchement(id),
-        FOREIGN KEY (f_etat_vaccinal_id) REFERENCES Etat_vaccinal(id),
-        FOREIGN KEY (f_types_de_vaccination_id) REFERENCES Types_de_vaccination(id),
-        FOREIGN KEY (f_pathologie_id) REFERENCES Pathologie(id),
-        FOREIGN KEY (f_tranche_age_id) REFERENCES Tranche_age(id),
-        FOREIGN KEY (f_maladies_du_pev_id) REFERENCES Maladies_du_pev(id),
-        FOREIGN KEY (f_maladies_infectieuses_id) REFERENCES Maladies_infectieuses(id),
-        FOREIGN KEY (f_maladies_ist_id) REFERENCES Maladies_ist(id),
-        FOREIGN KEY (f_type_de_maladie_id) REFERENCES Type_de_Maladie(id),
-        FOREIGN KEY (f_activites_iec_id) REFERENCES Activites_IEC(id),
-        FOREIGN KEY (f_service_medicaux_id) REFERENCES Service_Medicaux(id),
-        FOREIGN KEY (f_type_infrastructures_ou_organisations_sportives_id) REFERENCES Type_infrastructures_ou_organisations_sportives(id),
-        FOREIGN KEY (f_disciplines_sportives_id) REFERENCES Disciplines_sportives(id),
-        FOREIGN KEY (f_type_infrastructures_culturelles_id) REFERENCES Type_infrastructures_culturelles(id),
-        FOREIGN KEY (f_type_de_patrimoines_culturels_immatériels_id) REFERENCES Type_de_Patrimoines_culturels_immatériels(id),
-        FOREIGN KEY (f_type_actions_culturelles_et_artistiques_id) REFERENCES Type_actions_culturelles_et_artistiques(id),
-        FOREIGN KEY (f_type_operateurs_des_oeuvres_esprit_id) REFERENCES Type_operateurs_des_oeuvres_esprit(id),
-        FOREIGN KEY (f_type_de_groupes_culturels_id) REFERENCES Type_de_groupes_culturels(id),
-        FOREIGN KEY (f_type_de_manifestations_culturelles_id) REFERENCES Type_de_manifestations_culturelles(id)
+        FOREIGN KEY (f_cycle_id) REFERENCES Cycle(id_cycle),
+        FOREIGN KEY (f_niveau_prescolaire_id) REFERENCES Niveau_Prescolaire(niv_prescolaire_id),
+        FOREIGN KEY (f_niveau_primaire_id) REFERENCES Niveau_Primaire(niv_primaire_id),
+        FOREIGN KEY (f_niveau_secondaire_1er_cycle_id) REFERENCES Niveau_Secondaire_1er_cycle(niv_secondaire_1er_cycle_id),
+        FOREIGN KEY (f_niveau_secondaire_2nd_cycle_id) REFERENCES Niveau_Secondaire_2nd_cycle(niv_secondaire_2nd_cycle_id),
+        FOREIGN KEY (f_niveau_technique_id) REFERENCES Niveau_Technique(niv_technique_id),
+        FOREIGN KEY (f_niveau_superieur_id) REFERENCES Niveau_Superieur(niv_superieur_id),
+        FOREIGN KEY (f_niveau_professionnel_id) REFERENCES Niveau_Professionnel(niv_professionnel_id),
+        FOREIGN KEY (f_type_examen_id) REFERENCES Type_examen(id_type_examen),
+        FOREIGN KEY (f_infrastructures_sanitaires_id) REFERENCES Infrastructures_sanitaires(id_infrastructures_sanitaires),
+        FOREIGN KEY (f_lieu_accouchement_id) REFERENCES Lieu_accouchement(id_lieu_accouchement),
+        FOREIGN KEY (f_etat_vaccinal_id) REFERENCES Etat_vaccinal(id_etat_vaccinal),
+        FOREIGN KEY (f_types_de_vaccination_id) REFERENCES Types_de_vaccination(id_types_de_vaccination),
+        FOREIGN KEY (f_pathologie_id) REFERENCES Pathologie(id_pathologie),
+        FOREIGN KEY (f_tranche_age_id) REFERENCES Tranche_age(id_tranche_age),
+        FOREIGN KEY (f_maladies_du_pev_id) REFERENCES Maladies_du_PEV(id_maladies_du_pev),
+        FOREIGN KEY (f_maladies_infectieuses_id) REFERENCES Maladies_infectieuses(id_maladies_infectieuses),
+        FOREIGN KEY (f_maladies_ist_id) REFERENCES Maladies_IST(id_maladies_ist),
+        FOREIGN KEY (f_type_de_maladie_id) REFERENCES Type_de_Maladie(id_type_de_maladie),
+        FOREIGN KEY (f_activites_iec_id) REFERENCES Activites_IEC(id_activites_iec),
+        FOREIGN KEY (f_service_medicaux_id) REFERENCES Service_Medicaux(id_service_medicaux),
+        FOREIGN KEY (f_type_infrastructures_ou_organisations_sportives_id) REFERENCES Type_infrastructures_ou_organisations_sportives(id_type_infrastructures_sportives),
+        FOREIGN KEY (f_disciplines_sportives_id) REFERENCES Disciplines_sportives(id_disciplines_sportives),
+        FOREIGN KEY (f_type_infrastructures_culturelles_id) REFERENCES Type_infrastructures_culturelles(id_type_infrastructures_culturelles),
+        FOREIGN KEY (f_type_de_patrimoines_culturels_immatériels_id) REFERENCES Type_de_Patrimoines_culturels_immatériels(id_type_patrimoines_culturels_immatériels),
+        FOREIGN KEY (f_type_actions_culturelles_et_artistiques_id) REFERENCES Type_actions_culturelles_et_artistiques(id_type_actions_culturelles_artistiques),
+        FOREIGN KEY (f_type_operateurs_des_oeuvres_esprit_id) REFERENCES Type_operateurs_des_oeuvres_esprit(id_type_operateurs_oeuvres_esprit),
+        FOREIGN KEY (f_type_de_groupes_culturels_id) REFERENCES Type_de_groupes_culturels(id_type_groupes_culturels),
+        FOREIGN KEY (f_type_de_manifestations_culturelles_id) REFERENCES Type_de_manifestations_culturelles(id_type_manifestations_culturelles)
     );
     """
+
     cursor.execute(create_table_query)
     print("Table ValeursIndicateurs créée avec succès.")
 
@@ -248,4 +407,11 @@ def create_valeurs_indicateurs_table(db_name):
     conn.close()
     print("Base de données mise à jour avec succès.")
 
+create_tables()
+# Les tables de désagrégation de condition de vie des ménages
+nv_base()
+
+# Appeler la fonction pour créer la table ValeursIndicateurs
 create_valeurs_indicateurs_table('annuiare.db')
+
+

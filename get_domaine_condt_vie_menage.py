@@ -5,7 +5,7 @@ def get_cycle():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Cycle")
+            cursor.execute("SELECT id_cycle, nom_cycle FROM Cycle")
             cycles = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -19,7 +19,7 @@ def get_niveau_prescolaire():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Prescolaire")
+            cursor.execute("SELECT niv_prescolaire_id, nom_prescolaire FROM Niveau_Prescolaire")
             niveaux_prescolaires = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
