@@ -136,5 +136,4 @@ def afficher_valeurs_indicateurs(db_name):
 
 # Appel de la fonction pour afficher les données
 df=afficher_valeurs_indicateurs('annuiare.db')
-import streamlit as st
-st.dataframe(df)
+

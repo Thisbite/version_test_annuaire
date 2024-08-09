@@ -168,3 +168,15 @@ def dom_condt_vie_menage():
     return
 
 dom_condt_vie_menage()
+
+import affichage_data as af
+st.write("La base de données possible")
+df = af.afficher_valeurs_indicateurs('annuiare.db')
+if st.checkbox("Afficher la vue des données"):
+    st.dataframe(df)
+
+
+
+
+
+
