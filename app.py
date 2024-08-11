@@ -94,7 +94,7 @@ def dom_condt_vie_menage():
             st.write(f"Indicateur trouvé : {nom_indicateur}")
             st.write(f"Code indicateur entré: {id_indicateur}")
 
-            if 2001 <= id_indicateur <= 2999:
+            if 2001 <= id_indicateur <= 2029:
                 st.write("---------------------")
                 st.markdown('<p class="custom-label">Choisir le niveau désagrégation</p>', unsafe_allow_html=True)
 
