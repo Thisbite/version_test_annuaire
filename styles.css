@@ -1,0 +1,12 @@
+/* styles.css */
+body {
+    font-size: 45px; /* Remplacez par la taille souhaitée */
+}
+
+.stMarkdown {
+    font-size: 45px; /* Appliquez-le aux éléments Markdown */
+}
+.bold-text {
+    font-weight: bold;
+    color: #000000; /* Couleur noire par défaut, peut être modifiée */
+}

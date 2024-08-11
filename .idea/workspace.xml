@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8706a631-834e-4449-80d1-a30462d91e70" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file_xlsx/primaire_ds" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/affichage_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/affichage_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/annuiare.db" beforeDir="false" afterPath="$PROJECT_DIR$/annuiare.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_donnee.py" beforeDir="false" afterPath="$PROJECT_DIR$/base_donnee.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/education.py" beforeDir="false" afterPath="$PROJECT_DIR$/education.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_xlsx/register_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/register_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_domaine_condt_vie_menage.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_domaine_condt_vie_menage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_object.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,16 +74,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/education.py</url>
-          <line>158</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

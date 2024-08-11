@@ -128,7 +128,7 @@ def dom_condt_vie_menage():
                         g_vie.insert_value_cdt_vie(
                             indicator_id=indicator_options[selected_indicator], region_id=region_id,
                             department_id=department_id, sous_prefecture_id=sous_prefecture_id,
-                            sexe_id=None, valeur=valeur, annee=annee, cycle_id=cycle_id
+                             valeur=valeur, annee=annee, cycle_id=cycle_id
                         )
                     st.success("Valeurs enregistrées avec succès.")
 
@@ -151,17 +151,11 @@ def dom_condt_vie_menage():
                             region_id=region_id,
                             department_id=department_id,
                             sous_prefecture_id=sous_prefecture_id,
-                            sexe_id=None,
                             valeur=valeur,
                             annee=annee,
-                            cycle_id=None,
                             niveau_prescolaire_id=prescol_id,
-                            niveau_primaire_id=None,
-                            niveau_secondaire_1er_cycle_id=None,
-                            niveau_secondaire_2nd_cycle_id=None,
-                            niveau_technique_id=None,
-                            niveau_superieur_id=None,
-                            niveau_professionnel_id=None
+
+
                         )
                     st.success("Valeurs enregistrées avec succès.")
 

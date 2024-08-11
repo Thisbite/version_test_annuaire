@@ -1,0 +1,4 @@
+[theme]
+base="light"             # Définit le thème de base en "clair" (options: "light" ou "dark")
+font="serif"             # Utilise une police "serif" (options: "serif", "sans serif", "monospace")
+        # Définit la taille de la police en pixels

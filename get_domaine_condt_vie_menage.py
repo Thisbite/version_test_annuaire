@@ -1,6 +1,5 @@
 
 import sqlite3
-
 def get_cycle():
     try:
         with sqlite3.connect('annuiare.db') as conn:
@@ -33,7 +32,7 @@ def get_niveau_primaire():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Primaire")
+            cursor.execute("SELECT niv_primaire_id , nom_primaire FROM Niveau_Primaire")
             niveaux_primaires = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -47,7 +46,7 @@ def get_niveau_secondaire_1er_cycle():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Secondaire_1er_cycle")
+            cursor.execute("SELECT niv_secondaire_1er_cycle_id,nom_secondaire_1er_cycle FROM Niveau_Secondaire_1er_cycle")
             niveaux_secondaires_1er_cycle = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -61,7 +60,7 @@ def get_niveau_secondaire_2nd_cycle():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Secondaire_2nd_cycle")
+            cursor.execute("SELECT id_niveau_secondaire_2nd_cycle, nom_niveau_secondaire_2nd_cycle FROM Niveau_Secondaire_2nd_cycle")
             niveaux_secondaires_2nd_cycle = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -75,7 +74,7 @@ def get_niveau_technique():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Technique")
+            cursor.execute("SELECT id_niveau_technique, nom_niveau_technique FROM Niveau_Technique")
             niveaux_techniques = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -89,7 +88,7 @@ def get_niveau_superieur():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Superieur")
+            cursor.execute("SELECT id_niveau_superieur, nom_niveau_superieur FROM Niveau_Superieur")
             niveaux_superieurs = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -103,7 +102,7 @@ def get_niveau_professionnel():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Niveau_Professionnel")
+            cursor.execute("SELECT id_niveau_professionnel, nom_niveau_professionnel FROM Niveau_Professionnel")
             niveaux_professionnels = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -117,7 +116,7 @@ def get_type_examen():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_examen")
+            cursor.execute("SELECT id_type_examen, nom_type_examen FROM Type_examen")
             types_examens = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -131,7 +130,7 @@ def get_infrastructures_sanitaires():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Infrastructures_sanitaires")
+            cursor.execute("SELECT id_infrastructures_sanitaires, nom_infrastructures_sanitaires FROM Infrastructures_sanitaires")
             infrastructures_sanitaires = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -145,7 +144,7 @@ def get_lieu_accouchement():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Lieu_accouchement")
+            cursor.execute("SELECT id_lieu_accouchement, nom_lieu_accouchement FROM Lieu_accouchement")
             lieux_accouchement = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -159,7 +158,7 @@ def get_etat_vaccinal():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Etat_vaccinal")
+            cursor.execute("SELECT id_etat_vaccinal, nom_etat_vaccinal FROM Etat_vaccinal")
             etats_vaccinaux = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -173,7 +172,7 @@ def get_types_de_vaccination():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Types_de_vaccination")
+            cursor.execute("SELECT id_types_de_vaccination, nom_types_de_vaccination FROM Types_de_vaccination")
             types_de_vaccination = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -187,7 +186,7 @@ def get_pathologie():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Pathologie")
+            cursor.execute("SELECT id_pathologie, nom_pathologie FROM Pathologie")
             pathologies = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -201,7 +200,7 @@ def get_tranche_age():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Tranche_age")
+            cursor.execute("SELECT id_tranche_age, nom_tranche_age FROM Tranche_age")
             tranches_age = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -215,7 +214,7 @@ def get_maladies_du_pev():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Maladies_du_pev")
+            cursor.execute("SELECT id_maladies_du_pev, nom_maladies_du_pev FROM Maladies_du_pev")
             maladies_du_pev = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -229,7 +228,7 @@ def get_maladies_infectieuses():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Maladies_infectieuses")
+            cursor.execute("SELECT id_maladies_infectieuses, nom_maladies_infectieuses FROM Maladies_infectieuses")
             maladies_infectieuses = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -243,7 +242,7 @@ def get_maladies_ist():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Maladies_ist")
+            cursor.execute("SELECT id_maladies_ist, nom_maladies_ist FROM Maladies_ist")
             maladies_ist = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -257,7 +256,7 @@ def get_type_de_maladie():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_de_Maladie")
+            cursor.execute("SELECT id_type_de_maladie, nom_type_de_maladie FROM Type_de_Maladie")
             types_de_maladie = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -271,7 +270,7 @@ def get_activites_iec():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Activites_IEC")
+            cursor.execute("SELECT id_activites_iec, nom_activites_iec FROM Activites_IEC")
             activites_iec = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -285,7 +284,7 @@ def get_service_medicaux():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Service_Medicaux")
+            cursor.execute("SELECT id_service_medicaux, nom_service_medicaux FROM Service_Medicaux")
             services_medicaux = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -299,7 +298,7 @@ def get_type_infrastructures_ou_organisations_sportives():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_infrastructures_ou_organisations_sportives")
+            cursor.execute("SELECT id_type_infrastructures_ou_organisations_sportives, nom_type_infrastructures_ou_organisations_sportives FROM Type_infrastructures_ou_organisations_sportives")
             types_infrastructures_ou_organisations_sportives = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -313,7 +312,7 @@ def get_disciplines_sportives():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Disciplines_sportives")
+            cursor.execute("SELECT id_disciplines_sportives, nom_disciplines_sportives FROM Disciplines_sportives")
             disciplines_sportives = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -327,7 +326,7 @@ def get_type_infrastructures_culturelles():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_infrastructures_culturelles")
+            cursor.execute("SELECT id_type_infrastructures_culturelles, nom_type_infrastructures_culturelles FROM Type_infrastructures_culturelles")
             types_infrastructures_culturelles = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -341,7 +340,7 @@ def get_type_de_patrimoines_culturels_immatériels():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_de_Patrimoines_culturels_immatériels")
+            cursor.execute("SELECT id_type_de_patrimoines_culturels_immatériels, nom_type_de_patrimoines_culturels_immatériels FROM Type_de_Patrimoines_culturels_immatériels")
             types_patrimoines_culturels_immatériels = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -355,7 +354,7 @@ def get_type_actions_culturelles_et_artistiques():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_actions_culturelles_et_artistiques")
+            cursor.execute("SELECT id_type_actions_culturelles_et_artistiques, nom_type_actions_culturelles_et_artistiques FROM Type_actions_culturelles_et_artistiques")
             types_actions_culturelles_et_artistiques = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -369,7 +368,7 @@ def get_type_operateurs_des_oeuvres_esprit():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_operateurs_des_oeuvres_esprit")
+            cursor.execute("SELECT id_type_operateurs_oeuvres_esprit, nom_type_operateurs_oeuvres_esprit FROM Type_operateurs_des_oeuvres_esprit")
             types_operateurs_des_oeuvres_esprit = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -383,7 +382,7 @@ def get_type_de_groupes_culturels():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_de_groupes_culturels")
+            cursor.execute("SELECT id_type_groupes_culturels, nom_type_groupes_culturels FROM Type_de_groupes_culturels")
             types_groupes_culturels = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -397,7 +396,7 @@ def get_type_de_manifestations_culturelles():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id, nom FROM Type_de_manifestations_culturelles")
+            cursor.execute("SELECT id_type_manifestations_culturelles, nom_type_manifestations_culturelles FROM Type_de_manifestations_culturelles")
             types_manifestations_culturelles = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -413,7 +412,7 @@ def get_type_de_manifestations_culturelles():
 
 import sqlite3
 
-def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture_id, sexe_id, valeur, annee,
+def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture_id,  valeur, annee,sexe_id=None,
                          groupe_age_id=None, age_id=None, cycle_id=None, niveau_prescolaire_id=None,
                          niveau_primaire_id=None, niveau_secondaire_1er_cycle_id=None, niveau_secondaire_2nd_cycle_id=None,
                          niveau_technique_id=None, niveau_superieur_id=None, niveau_professionnel_id=None,

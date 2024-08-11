@@ -109,7 +109,24 @@ conn.commit()
 # Fermer la connexion
 conn.close()
 
+
+#Primaire
+df = pd.read_excel('primaire_ds')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Primaire(niv_primaire_id,nom_primaire) VALUES ( ?, ?)",
+                  (row['id'], row['primaire']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
 """
+
+
+
 
 
 

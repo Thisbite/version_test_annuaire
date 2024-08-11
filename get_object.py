@@ -1,23 +1,19 @@
 import sqlite3
 import pandas as pd
 import streamlit as st
-def get_indicators(domaine_id=None):
+def get_indicators(id_indicateur):
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            if domaine_id is not None:
-                query = "SELECT indicateur_id, nom_indicateur FROM Indicateur WHERE f_domaine_id = ? ORDER BY nom_indicateur"
-                cursor.execute(query, (domaine_id,))
-            else:
-                query = "SELECT indicateur_id, nom_indicateur FROM Indicateur"
-                cursor.execute(query)
-            indicators = cursor.fetchall()
+            query = "SELECT indicateur_id, nom_indicateur FROM Indicateur WHERE indicateur_id = ?"
+            cursor.execute(query, (id_indicateur,))
+            indicators = cursor.fetchone()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
-        return []
+        return None
     except Exception as e:
         print(f"Exception in get_indicators: {e}")
-        return []
+        return None
     return indicators
 
 
