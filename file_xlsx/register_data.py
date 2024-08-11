@@ -123,8 +123,93 @@ conn.commit()
 # Fermer la connexion
 conn.close()
 
-"""
 
+#Niveau secondaire premier cycle
+df = pd.read_excel('second_1er_cycle.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Secondaire_1er_cycle( niv_secondaire_1er_cycle_id, nom_secondaire_1er_cycle) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+#Niveau secondaire 2eme cyle
+df = pd.read_excel('niveau_secon_2nd_cycle.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Secondaire_2nd_cycle(niv_secondaire_2nd_cycle_id,nom_secondaire_2nd_cycle) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+
+#Niveau technique
+df = pd.read_excel('niveau_technique.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Technique(niv_technique_id,nom_technique) VALUES ( ?, ?)",
+                  (row['id'], row['niveau_technique']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+#Supérieur cycle
+df = pd.read_excel('superieur_cycle.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Superieur( niv_superieur_id, nom_superieur) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+#Proffessionnelle cycle
+df = pd.read_excel('professionnelle_cycle.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Niveau_Professionnel( niv_professionnel_id, nom_professionnel) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+"""
+#Proffessionnelle cycle
+df = pd.read_excel('examen_scolaire.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Type_examen( id_type_examen, nom_type_examen) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
 
 
 

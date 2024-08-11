@@ -60,7 +60,7 @@ def get_niveau_secondaire_2nd_cycle():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id_niveau_secondaire_2nd_cycle, nom_niveau_secondaire_2nd_cycle FROM Niveau_Secondaire_2nd_cycle")
+            cursor.execute("SELECT niv_secondaire_2nd_cycle_id, nom_secondaire_2nd_cycle FROM Niveau_Secondaire_2nd_cycle")
             niveaux_secondaires_2nd_cycle = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -74,7 +74,7 @@ def get_niveau_technique():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id_niveau_technique, nom_niveau_technique FROM Niveau_Technique")
+            cursor.execute("SELECT niv_technique_id,nom_technique FROM Niveau_Technique")
             niveaux_techniques = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -88,7 +88,7 @@ def get_niveau_superieur():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id_niveau_superieur, nom_niveau_superieur FROM Niveau_Superieur")
+            cursor.execute("SELECT  niv_superieur_id, nom_superieur FROM Niveau_Superieur")
             niveaux_superieurs = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
@@ -102,7 +102,7 @@ def get_niveau_professionnel():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT id_niveau_professionnel, nom_niveau_professionnel FROM Niveau_Professionnel")
+            cursor.execute("SELECT niv_professionnel_id, nom_professionnel FROM Niveau_Professionnel")
             niveaux_professionnels = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")
