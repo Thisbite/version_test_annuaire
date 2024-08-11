@@ -140,7 +140,7 @@ def dom_condt_vie_menage():
     secondaire_2eme_cycle_options=create_options(secondaire_2eme_cycle)
 
     sexes = go.get_sexes()
-    sexe_options1 = {"": None, **create_options(sexes)}
+    sexe_options1 =create_options(sexes)
 
 
 
