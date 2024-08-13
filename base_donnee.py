@@ -225,6 +225,12 @@ def nv_base():
         );
         """,
         """
+        CREATE TABLE IF NOT EXISTS Infection_respiratoire (
+                  id_infectieuses_respiratoire INTEGER PRIMARY KEY,
+                  nom_infectieuses_respiratoire TEXT
+              );
+              """,
+        """
         CREATE TABLE IF NOT EXISTS Maladies_IST (
             id_maladies_ist INTEGER PRIMARY KEY,
             nom_maladies_ist TEXT
@@ -316,6 +322,8 @@ Exécution de la fonction
 import sqlite3
 
 
+import sqlite3
+
 def create_valeurs_indicateurs_table(db_name):
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
@@ -323,44 +331,45 @@ def create_valeurs_indicateurs_table(db_name):
     create_table_query = """
     CREATE TABLE IF NOT EXISTS ValeursIndicateurs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        f_region_id INTEGER  NULL,
-        f_departement_id INTEGER NULL,
-        f_sous_prefecture_id INTEGER NULL,
-        f_indicateur_id INTEGER NULL,
+        f_region_id INTEGER,
+        f_departement_id INTEGER,
+        f_sous_prefecture_id INTEGER,
+        f_indicateur_id INTEGER,
         Valeur REAL,
         Annee INTEGER,
-        f_sexe_id INTEGER NULL,
-        f_grp_age_id INTEGER NULL,
-        f_age_id INTEGER NULL,
-        f_cycle_id INTEGER NULL,
-        f_niveau_prescolaire_id INTEGER NULL,
-        f_niveau_primaire_id INTEGER NULL,
-        f_niveau_secondaire_1er_cycle_id INTEGER NULL,
-        f_niveau_secondaire_2nd_cycle_id INTEGER NULL,
-        f_niveau_technique_id INTEGER NULL,
-        f_niveau_superieur_id INTEGER NULL,
-        f_niveau_professionnel_id INTEGER NULL,
-        f_type_examen_id INTEGER NULL,
-        f_infrastructures_sanitaires_id INTEGER NULL,
-        f_lieu_accouchement_id INTEGER NULL,
-        f_etat_vaccinal_id INTEGER NULL,
-        f_types_de_vaccination_id INTEGER NULL,
-        f_pathologie_id INTEGER NULL,
-        f_tranche_age_id INTEGER NULL,
-        f_maladies_du_pev_id INTEGER NULL,
-        f_maladies_infectieuses_id INTEGER NULL,
-        f_maladies_ist_id INTEGER NULL,
-        f_type_de_maladie_id INTEGER NULL,
-        f_activites_iec_id INTEGER NULL,
-        f_service_medicaux_id INTEGER NULL,
-        f_type_infrastructures_ou_organisations_sportives_id INTEGER NULL,
+        f_sexe_id INTEGER,
+        f_grp_age_id INTEGER,
+        f_age_id INTEGER,
+        f_cycle_id INTEGER,
+        f_niveau_prescolaire_id INTEGER,
+        f_niveau_primaire_id INTEGER,
+        f_niveau_secondaire_1er_cycle_id INTEGER,
+        f_niveau_secondaire_2nd_cycle_id INTEGER,
+        f_niveau_technique_id INTEGER,
+        f_niveau_superieur_id INTEGER,
+        f_niveau_professionnel_id INTEGER,
+        f_type_examen_id INTEGER,
+        f_infrastructures_sanitaires_id INTEGER,
+        f_lieu_accouchement_id INTEGER,
+        f_etat_vaccinal_id INTEGER,
+        f_types_de_vaccination_id INTEGER,
+        f_pathologie_id INTEGER,
+        f_tranche_age_id INTEGER,
+        f_maladies_du_pev_id INTEGER,
+        f_maladies_infectieuses_id INTEGER,
+        f_infectieuses_respiratoire_id INTEGER,
+        f_maladies_ist_id INTEGER,
+        f_type_de_maladie_id INTEGER,
+        f_activites_iec_id INTEGER,
+        f_service_medicaux_id INTEGER,
+        f_type_infrastructures_ou_organisations_sportives_id INTEGER,
         f_disciplines_sportives_id INTEGER,
-        f_type_infrastructures_culturelles_id INTEGER NULL,
-        f_type_de_patrimoines_culturels_immatériels_id INTEGER NULL,
-        f_type_actions_culturelles_et_artistiques_id INTEGER NULL,
-        f_type_operateurs_des_oeuvres_esprit_id INTEGER NULL,
-        f_type_de_groupes_culturels_id INTEGER NULL,
-        f_type_de_manifestations_culturelles_id INTEGER NULL,
+        f_type_infrastructures_culturelles_id INTEGER,
+        f_type_de_patrimoines_culturels_immatériels_id INTEGER,
+        f_type_actions_culturelles_et_artistiques_id INTEGER,
+        f_type_operateurs_des_oeuvres_esprit_id INTEGER,
+        f_type_de_groupes_culturels_id INTEGER,
+        f_type_de_manifestations_culturelles_id INTEGER,
         FOREIGN KEY (f_region_id) REFERENCES Region(region_id),
         FOREIGN KEY (f_departement_id) REFERENCES Departement(departement_id),
         FOREIGN KEY (f_sous_prefecture_id) REFERENCES SousPrefectures(sousprefect_id),
@@ -385,6 +394,7 @@ def create_valeurs_indicateurs_table(db_name):
         FOREIGN KEY (f_tranche_age_id) REFERENCES Tranche_age(id_tranche_age),
         FOREIGN KEY (f_maladies_du_pev_id) REFERENCES Maladies_du_PEV(id_maladies_du_pev),
         FOREIGN KEY (f_maladies_infectieuses_id) REFERENCES Maladies_infectieuses(id_maladies_infectieuses),
+        FOREIGN KEY (f_infectieuses_respiratoire_id) REFERENCES Infection_respiratoire(id_infectieuses_respiratoire),
         FOREIGN KEY (f_maladies_ist_id) REFERENCES Maladies_IST(id_maladies_ist),
         FOREIGN KEY (f_type_de_maladie_id) REFERENCES Type_de_Maladie(id_type_de_maladie),
         FOREIGN KEY (f_activites_iec_id) REFERENCES Activites_IEC(id_activites_iec),
@@ -400,8 +410,11 @@ def create_valeurs_indicateurs_table(db_name):
     );
     """
 
-    cursor.execute(create_table_query)
-    print("Table ValeursIndicateurs créée avec succès.")
+    try:
+        cursor.execute(create_table_query)
+        print("Table ValeursIndicateurs créée avec succès.")
+    except sqlite3.Error as e:
+        print(f"Une erreur est survenue lors de la création de la table : {e.args[0]}")
 
     conn.commit()
     conn.close()

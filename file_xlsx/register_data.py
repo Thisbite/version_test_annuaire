@@ -197,8 +197,9 @@ conn.commit()
 # Fermer la connexion
 conn.close()
 
-"""
-#Proffessionnelle cycle
+
+
+#type examen
 df = pd.read_excel('examen_scolaire.xlsx')
 # Insertion des données par blocs (plus efficace)
 for index, row in df.iterrows():
@@ -210,6 +211,212 @@ conn.commit()
 
 # Fermer la connexion
 conn.close()
+
+#Groupe age
+df = pd.read_excel('groupe_age')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO  GroupeAge ( grp_age_id,  groupe_age ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+#Infractructure sanitaire
+df = pd.read_excel('infrastructure_sani.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO  Infrastructures_sanitaires ( id_infrastructures_sanitaires,  nom_infrastructures_sanitaires ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Lieu Accouchement
+df = pd.read_excel('accouchement.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO  Lieu_accouchement ( id_lieu_accouchement,  nom_lieu_accouchement ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Services médicaux
+df = pd.read_excel('service_medicaux.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Service_Medicaux( id_service_medicaux,  nom_service_medicaux ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+
+# Etat de vaccination
+df = pd.read_excel('etat_vaccination.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Etat_vaccinal( id_etat_vaccinal,  nom_etat_vaccinal ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+# Type de vaccination 
+df = pd.read_excel('type_vaccination.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Types_de_vaccination( id_types_de_vaccination,  nom_types_de_vaccination ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Pathologie
+df = pd.read_excel('pathologie.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Pathologie( id_pathologie,  nom_pathologie ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Tranche d'âge
+df = pd.read_excel('tranche_age.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Tranche_age( id_tranche_age,  nom_tranche_age ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Maladie PEV
+df = pd.read_excel('maladie_pev.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Maladies_du_PEV( id_maladies_du_pev,  nom_maladies_du_pev ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Maladie infectieuse
+df = pd.read_excel('maladies_infectieuse.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Maladies_infectieuses( id_maladies_infectieuses, nom_maladies_infectieuses ) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+#Infections respiratoire
+df = pd.read_excel('infection_respiratoire.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Infection_respiratoire( id_infectieuses_respiratoire,nom_infectieuses_respiratoire) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+#Maladies IST
+df = pd.read_excel('maladie_ist.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Maladies_IST( id_maladies_ist,nom_maladies_ist) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
+
+# Type maladies
+df = pd.read_excel('type_maladie.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Type_de_Maladie( id_type_de_maladie,nom_type_de_maladie) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+"""
+# Activités IES
+df = pd.read_excel('activite_ies.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Activites_IEC( id_activites_iec,nom_activites_iec) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+
+# Valider les modifications
+conn.commit()
+
+# Fermer la connexion
+conn.close()
+
+
 
 
 

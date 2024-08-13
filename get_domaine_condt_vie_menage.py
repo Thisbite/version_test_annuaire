@@ -238,6 +238,22 @@ def get_maladies_infectieuses():
         return []
     return maladies_infectieuses
 
+
+def get_infections_respiratoires():
+    try:
+        with sqlite3.connect('annuiare.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_infectieuses_respiratoire, nom_infectieuses_respiratoire FROM Infection_respiratoire")
+            infections_respiratoires = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return []
+    except Exception as e:
+        print(f"Exception in get_infections_respiratoires: {e}")
+        return []
+    return infections_respiratoires
+
+
 def get_maladies_ist():
     try:
         with sqlite3.connect('annuiare.db') as conn:
@@ -419,6 +435,7 @@ def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture
                          type_examen_id=None, infrastructures_sanitaires_id=None, lieu_accouchement_id=None,
                          etat_vaccinal_id=None, types_de_vaccination_id=None, pathologie_id=None,
                          tranche_age_id=None, maladies_du_pev_id=None, maladies_infectieuses_id=None,
+                         infection_respiratoire=None,
                          maladies_ist_id=None, type_de_maladie_id=None, activites_iec_id=None,
                          service_medicaux_id=None, type_infrastructures_ou_organisations_sportives_id=None,
                          disciplines_sportives_id=None, type_infrastructures_culturelles_id=None,
@@ -435,18 +452,18 @@ def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture
                     f_niveau_secondaire_1er_cycle_id, f_niveau_secondaire_2nd_cycle_id, f_niveau_technique_id,
                     f_niveau_superieur_id, f_niveau_professionnel_id, f_type_examen_id, f_infrastructures_sanitaires_id,
                     f_lieu_accouchement_id, f_etat_vaccinal_id, f_types_de_vaccination_id, f_pathologie_id,
-                    f_tranche_age_id, f_maladies_du_pev_id, f_maladies_infectieuses_id, f_maladies_ist_id,
+                    f_tranche_age_id, f_maladies_du_pev_id, f_maladies_infectieuses_id, f_infectieuses_respiratoire_id,f_maladies_ist_id,
                     f_type_de_maladie_id, f_activites_iec_id, f_service_medicaux_id,
                     f_type_infrastructures_ou_organisations_sportives_id, f_disciplines_sportives_id,
                     f_type_infrastructures_culturelles_id, f_type_de_patrimoines_culturels_immatériels_id,
                     f_type_actions_culturelles_et_artistiques_id, f_type_operateurs_des_oeuvres_esprit_id,
                     f_type_de_groupes_culturels_id, f_type_de_manifestations_culturelles_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (region_id, department_id, sous_prefecture_id, indicator_id, sexe_id, valeur, annee,
                   groupe_age_id, age_id, cycle_id, niveau_prescolaire_id, niveau_primaire_id, niveau_secondaire_1er_cycle_id,
                   niveau_secondaire_2nd_cycle_id, niveau_technique_id, niveau_superieur_id, niveau_professionnel_id,
                   type_examen_id, infrastructures_sanitaires_id, lieu_accouchement_id, etat_vaccinal_id,
-                  types_de_vaccination_id, pathologie_id, tranche_age_id, maladies_du_pev_id, maladies_infectieuses_id,
+                  types_de_vaccination_id, pathologie_id, tranche_age_id, maladies_du_pev_id, maladies_infectieuses_id,infection_respiratoire,
                   maladies_ist_id, type_de_maladie_id, activites_iec_id, service_medicaux_id,
                   type_infrastructures_ou_organisations_sportives_id, disciplines_sportives_id,
                   type_infrastructures_culturelles_id, type_de_patrimoines_culturels_immatériels_id,
