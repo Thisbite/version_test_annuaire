@@ -13,45 +13,24 @@ st.markdown("""
             color: black;
             font-size: 45px; 
         }
-      
-       
-    </style>
-""", unsafe_allow_html=True)
-
-
-st.markdown("""
-    <style>
-    .stButton button {
+        .stButton button {
         background-color: orange;
         color: white;
         display: block;
         margin: 0 auto;
         font-weight: bold;
-    }
+         }
+
     </style>
-    """, unsafe_allow_html=True)
-st.markdown(
-    """
-    <style>
-    textarea {
-        font-size: 1.3rem !important;
-    }
-    input {
-        font-size: 1.3rem !important;
-    }
-    .label{
-     font-size: 1.5rem !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
+
+
+
 st.markdown(
     """
     <style>
     .custom-label {
         font-size: 1.2rem;
-
         color: blue;
     }
     </style>
@@ -59,7 +38,48 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Il marche
+st.markdown("""
+<style>
+.stNumberInput label {
+     color: blue;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
 
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+        <style>
+        .stTextInput label {
+              color: blue;
+              font-weight: bold;
+              font-size: 1.5rem;
+              text-align: center;
+        }
+        .stTextInput label {
+              
+              
+             font-size: 45px; 
+              
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+
+
+st.markdown("""
+                <style>
+
+                .stSelectbox label {
+                  color: blue;
+                }
+                </style>
+                """, unsafe_allow_html=True)
 
 
 def dom_condt_vie_menage():
@@ -70,16 +90,15 @@ def dom_condt_vie_menage():
     with st.expander("Cliquer ici ",expanded=True):
 
 
-        st.markdown('<p class="custom-label">Année de collecte</p>', unsafe_allow_html=True)
-        annee = st.number_input('', min_value=2000, max_value=2100, step=1, key="year_g",label_visibility='hidden')
 
-        st.markdown('<p class="custom-label">Saisie le code de l\'entité géographique</p>', unsafe_allow_html=True)
-        code_entite = st.number_input('', min_value=0, step=1,label_visibility='hidden')
+        annee = st.number_input('Année de collecte', min_value=2000, max_value=2100, step=1, key="year_g")
+
+        code_entite = st.number_input('Le code de l\'entité géographique', min_value=0, step=1)
 
         entity_type, entity_name = go.get_geographical_entity_name(code_entite)
         if entity_type and entity_name:
-            st.markdown(f'<p class="custom-label">Entité géographique : {entity_type}</p>', unsafe_allow_html=True)
-            st.markdown(f'<p class="custom-label">Nom : {entity_name}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="custom-label"> {entity_type} : {entity_name} </p>', unsafe_allow_html=True)
+
 
 
 
@@ -96,8 +115,11 @@ def dom_condt_vie_menage():
             sous_prefecture_id = code_entite
 
         # Section indicateur
-        st.markdown('<p class="custom-label">Entrez le code indicateur</p>', unsafe_allow_html=True)
-        ind = st.number_input(" ", min_value=0, step=1,key="ind1",label_visibility='hidden')
+
+        ind = st.text_input("Le code indicateur",key="ind1")
+
+        # Custom CSS
+
         indicator = go.get_indicators(ind)
 
 
@@ -110,41 +132,34 @@ def dom_condt_vie_menage():
 
             if 2001 <= id_indicateur <= 2029:
 
-                st.markdown('<p class="custom-label">Choisir le niveau désagrégation</p>', unsafe_allow_html=True)
-
-                desagration_list = ["",  "Cycle","Niveau préscolaire", "Niveau primaire", "Niveau Secondaire 1er cycle",
+                desagration_list = ["Choisir le niveau désagrégation",  "Cycle","Niveau préscolaire", "Niveau primaire", "Niveau Secondaire 1er cycle",
                                     "Niveau Secondaire 2nd cycle", "Niveau Technique", "Niveau Supérieur",
                                     "Niveau Professionnel",
                                      "Type d'examen","Sexe"]
 
-                level_of_disaggregation = st.selectbox(" ", desagration_list, label_visibility='hidden')
+
+                level_of_disaggregation = st.selectbox("Choisir le niveau désagrégation", desagration_list)
             elif 1001 <= id_indicateur <= 1024:
                 st.write("---------------------")
-                st.markdown('<p class="custom-label">Choisir le niveau désagrégation</p>', unsafe_allow_html=True)
 
                 desagration_list = ["","Sexe", "Groupe d'âge"]
 
-                level_of_disaggregation = st.selectbox(" ", desagration_list, label_visibility='hidden')
+                level_of_disaggregation = st.selectbox(" Choisir le niveau désagrégation", desagration_list)
 
 
             elif 2030<= id_indicateur <= 2102:
                 st.write("---------------------")
-                st.markdown('<p class="custom-label"> Niveau désagrégation </p>', unsafe_allow_html=True)
+
 
                 desagration_list = [" ", "Infrastructures sanitaires","Lieu d'accouchement","Etat vaccinal","Types de vaccination",
                                     "Pathologie","Tranche d'âge","Maladies du PEV","Maladies infectieuses",
                                     "Infections respiratoire aigüe","Maladies IST","Type de Maladie","Activités IEC","Services Médicaux"]
 
-                level_of_disaggregation = st.selectbox(" ", desagration_list, label_visibility='hidden')
+                level_of_disaggregation = st.selectbox(" Niveau désagrégation", desagration_list)
             else:
                 st.warning(f"Le niveau de desagrégation pour cet indicateur \n{nom_indicateur} n'est pas encore disponible")
         else:
             st.warning("Indicateur non trouvé")
-
-
-
-
-
     st.markdown('<p class="custom-label">---------------------------------------------------------------------------------------------------------------------</p>', unsafe_allow_html=True)
 
 
@@ -196,9 +211,9 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{cycle}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{cycle_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {cycle}", min_value=0, step=1, key=f"value_{cycle_id}",
+                                                 )
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -239,9 +254,9 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{presco}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{prescol_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{presco}", min_value=0, step=1, key=f"value_{prescol_id}",
+                                                 )
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -282,9 +297,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{prima}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{prima_id}",
-                                                 label_visibility='hidden')
+                        valeur = st.number_input(f"{prima} ", min_value=0, step=1, key=f"value_{prima_id}" )
+
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -328,11 +342,10 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{sec1}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{sec1_id}",
-                                                 label_visibility='hidden')
 
-                    # Ajouter les valeurs dans les listes respectives
+                        valeur = st.number_input(f" {sec1}", min_value=0, step=1, key=f"value_{sec1_id}")
+
+
                     valeurs.append(valeur)
                     annees.append(annee)
                     secondaire_1er_cycle_ids.append(sec1_id)
@@ -360,7 +373,6 @@ def dom_condt_vie_menage():
 
                 # Créer trois colonnes
                 col1, col2, col3 = st.columns(3)
-
                 for idx, (sec2, sec2_id) in enumerate(secondaire_2eme_cycle_options.items()):
                     # Choisir la colonne en fonction de l'index
                     if idx % 3 == 0:
@@ -371,11 +383,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{sec2}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{sec2_id}",
-                                                 label_visibility='hidden')
 
-                    # Ajouter les valeurs dans les listes respectives
+                        valeur = st.number_input(f" {sec2}", min_value=0, step=1, key=f"value_{sec2_id}")
                     valeurs.append(valeur)
                     annees.append(annee)
                     secondaire_2eme_cycle_ids.append(sec2_id)
@@ -420,9 +429,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{tech}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{tech_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {tech}", min_value=0, step=1, key=f"value_{tech_id}")
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -468,9 +476,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{sup}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{sup_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{sup}", min_value=0, step=1, key=f"value_{sup_id}")
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -515,11 +522,9 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{pro}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{pro_id}",
-                                                 label_visibility='hidden')
 
-                    # Ajouter les valeurs dans les listes respectives
+                        valeur = st.number_input(f" {pro}", min_value=0, step=1, key=f"value_{pro_id}")
+
                     valeurs.append(valeur)
                     annees.append(annee)
                     niveau_professionnel_ids.append(pro_id)
@@ -558,9 +563,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{sexe}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{sexe_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{sexe}", min_value=0, step=1, key=f"value_{sexe_id}")
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -605,10 +609,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{exam}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{exam_id}",
-                                                 label_visibility='hidden')
 
+                        valeur = st.number_input(f" {exam}", min_value=0, step=1, key=f"value_{exam_id}")
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -639,10 +641,8 @@ def dom_condt_vie_menage():
                 annees = []
                 groupe_age_ids = []
 
-                # Sélection du sexe en dehors de la boucle, car il est unique pour tous les groupes d'âge
-                st.markdown(f'<p class="custom-label">Choisir le sexe</p>', unsafe_allow_html=True)
-                selected_sexe = st.selectbox("Choisir le sexe", options=list(sexe_options2.keys()), key=f"value_sexe",
-                                             label_visibility='hidden')
+
+                selected_sexe = st.selectbox("Choisir le sexe", options=list(sexe_options2.keys()), key=f"value_sexe")
 
                 # Créer quatre colonnes
                 col1, col2, col3, col4 = st.columns(4)
@@ -659,9 +659,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{grpe_age} ans</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{grpe_age_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{grpe_age} ", min_value=0, step=1, key=f"value_{grpe_age_id}")
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -710,10 +709,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{infra_sanit}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{infra_sanit_id}",
-                                                 label_visibility='hidden')
 
+                        valeur = st.number_input(f" {infra_sanit}", min_value=0, step=1, key=f"value_{infra_sanit_id}")
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -754,9 +751,7 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{lieu_acc}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{lieu_acc_id}",
-                                                 label_visibility='hidden')
+                        valeur = st.number_input(f" {lieu_acc}", min_value=0, step=1, key=f"value_{lieu_acc_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -795,9 +790,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{etat_vacc}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{etat_vacc_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{etat_vacc} ", min_value=0, step=1, key=f"value_{etat_vacc_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -837,9 +831,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{type_vacc}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{type_vacc_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {type_vacc}", min_value=0, step=1, key=f"value_{type_vacc_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -880,9 +873,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{patho}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{patho_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {patho}", min_value=0, step=1, key=f"value_{patho_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -925,9 +917,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{tranche_age}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{tranche_age_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {tranche_age}", min_value=0, step=1, key=f"value_{tranche_age_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -970,9 +961,8 @@ def dom_condt_vie_menage():
                         col = col5
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{mal_pev}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{mal_pev_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {mal_pev}", min_value=0, step=1, key=f"value_{mal_pev_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1014,9 +1004,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{mal_infect}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{mal_infect_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {mal_infect}", min_value=0, step=1, key=f"value_{mal_infect_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1056,9 +1045,7 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{inf_resp}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{inf_resp_id}",
-                                                 label_visibility='hidden')
+                        valeur = st.number_input(f" {inf_resp}", min_value=0, step=1, key=f"value_{inf_resp_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1098,9 +1085,7 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{mal_ist}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{mal_ist_id}",
-                                                 label_visibility='hidden')
+                        valeur = st.number_input(f" {mal_ist}", min_value=0, step=1, key=f"value_{mal_ist_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1140,9 +1125,8 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{type_mal}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{type_mal_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f"{type_mal} ", min_value=0, step=1, key=f"value_{type_mal_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1181,9 +1165,7 @@ def dom_condt_vie_menage():
                         col = col3
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{act_iec}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{act_iec_id}",
-                                                 label_visibility='hidden')
+                        valeur = st.number_input(f" {act_iec}", min_value=0, step=1, key=f"value_{act_iec_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
@@ -1223,9 +1205,8 @@ def dom_condt_vie_menage():
                         col = col4
 
                     with col:
-                        st.markdown(f'<p class="custom-label">{service_medic}</p>', unsafe_allow_html=True)
-                        valeur = st.number_input(" ", min_value=0, step=1, key=f"value_{service_medic_id}",
-                                                 label_visibility='hidden')
+
+                        valeur = st.number_input(f" {service_medic}", min_value=0, step=1, key=f"value_{service_medic_id}")
 
                     valeurs.append(valeur)
                     annees.append(annee)
