@@ -160,7 +160,7 @@ def dom_condt_vie_menage():
                 st.warning(f"Le niveau de desagrégation pour cet indicateur \n{nom_indicateur} n'est pas encore disponible")
         else:
             st.warning("Indicateur non trouvé")
-    st.markdown('<p class="custom-label">---------------------------------------------------------------------------------------------------------------------</p>', unsafe_allow_html=True)
+    #st.markdown('<p class="custom-label">------------------------------------------------------------</p>', unsafe_allow_html=True)
 
 
     # Options pour les cycles et niveaux
