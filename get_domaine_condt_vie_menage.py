@@ -424,9 +424,117 @@ def get_type_de_manifestations_culturelles():
 
 
 
-
-
 import sqlite3
+
+def get_trimestre():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_trimestre, nom_trimestre FROM Trimestre")
+            trimestres = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table trimestre: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction trimestre: {e}")
+        return []
+    return trimestres
+
+def get_etat_des_ouvrages():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_etat_des_ouvrages, nom_etat_des_ouvrages FROM Etat_des_ouvrages")
+            etat_des_ouvrages = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table etat ouvrages: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction etat ouvrages: {e}")
+        return []
+    return etat_des_ouvrages
+
+def get_type_abonnement():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_type_abonnement, nom_type_abonnement FROM Type_abonnement")
+            types_abonnement = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table type abonnement: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction type abonnement: {e}")
+        return []
+    return types_abonnement
+
+def get_type_suivi():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_type_suivi, nom_type_suivi FROM Type_suivi")
+            types_suivi = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table type suivi: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction type suivi: {e}")
+        return []
+    return types_suivi
+
+def get_type_de_vulnerabilite():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_type_de_vulnerabilite, nom_type_de_vulnerabilite FROM Type_de_vulnerabilite")
+            types_vulnerabilite = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table type de vulnerabilite: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction type de vulnerabilite: {e}")
+        return []
+    return types_vulnerabilite
+
+def get_type_de_prise_charge():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_type_de_prise_charge, nom_type_de_prise_charge FROM Type_de_prise_charge")
+            types_prise_charge = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table type de prise en charge: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction type de prise en charge: {e}")
+        return []
+    return types_prise_charge
+
+def get_niveau():
+    try:
+        with sqlite3.connect("annuiare.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id_niveau, nom_niveau FROM Niveau")
+            niveaux = cursor.fetchall()
+    except sqlite3.Error as e:
+        print(f"Erreur de table niveau: {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur de fonction niveau: {e}")
+        return []
+    return niveaux
+
+
+
+
+
+
+
+
+
+
+
+
 
 def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture_id,  valeur, annee,sexe_id=None,
                          groupe_age_id=None, age_id=None, cycle_id=None, niveau_prescolaire_id=None,
@@ -441,7 +549,13 @@ def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture
                          disciplines_sportives_id=None, type_infrastructures_culturelles_id=None,
                          type_de_patrimoines_culturels_immatériels_id=None, type_actions_culturelles_et_artistiques_id=None,
                          type_operateurs_des_oeuvres_esprit_id=None, type_de_groupes_culturels_id=None,
-                         type_de_manifestations_culturelles_id=None):
+                         type_de_manifestations_culturelles_id=None,trimestre_id=None,etat_des_ouvrages_id=None ,
+                         type_abonnement_id=None,type_suivi_id=None, type_de_vulnerabilite_id=None ,type_de_prise_charge_id=None,
+                          niveau_id=None):
+
+
+
+
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
@@ -457,8 +571,18 @@ def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture
                     f_type_infrastructures_ou_organisations_sportives_id, f_disciplines_sportives_id,
                     f_type_infrastructures_culturelles_id, f_type_de_patrimoines_culturels_immatériels_id,
                     f_type_actions_culturelles_et_artistiques_id, f_type_operateurs_des_oeuvres_esprit_id,
-                    f_type_de_groupes_culturels_id, f_type_de_manifestations_culturelles_id)
-                VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    f_type_de_groupes_culturels_id, f_type_de_manifestations_culturelles_id,
+                    f_trimestre_id,
+                    f_etat_des_ouvrages_id ,
+                    f_type_abonnement_id ,
+                    f_type_suivi_id,
+                    f_type_de_vulnerabilite_id ,
+                    f_type_de_prise_charge_id, 
+                    f_niveau_id
+                    
+                    
+                    )
+                VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)
             """, (region_id, department_id, sous_prefecture_id, indicator_id, sexe_id, valeur, annee,
                   groupe_age_id, age_id, cycle_id, niveau_prescolaire_id, niveau_primaire_id, niveau_secondaire_1er_cycle_id,
                   niveau_secondaire_2nd_cycle_id, niveau_technique_id, niveau_superieur_id, niveau_professionnel_id,
@@ -468,7 +592,14 @@ def insert_value_cdt_vie(indicator_id, region_id, department_id, sous_prefecture
                   type_infrastructures_ou_organisations_sportives_id, disciplines_sportives_id,
                   type_infrastructures_culturelles_id, type_de_patrimoines_culturels_immatériels_id,
                   type_actions_culturelles_et_artistiques_id, type_operateurs_des_oeuvres_esprit_id,
-                  type_de_groupes_culturels_id, type_de_manifestations_culturelles_id))
+                  type_de_groupes_culturels_id, type_de_manifestations_culturelles_id, trimestre_id,
+                    etat_des_ouvrages_id ,type_abonnement_id , type_suivi_id,type_de_vulnerabilite_id ,
+                  type_de_prise_charge_id,niveau_id))
+
+
+
+
+
             conn.commit()
     except sqlite3.Error as e:
         print(f"Database error: {e}")

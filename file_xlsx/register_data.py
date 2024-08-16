@@ -65,12 +65,13 @@ for index, row in df.iterrows():
                   (row['code_direction'], row['description']))
 
 
+
 #Sexe
-df = pd.read_excel('sexe')
+df = pd.read_excel('sexe_ok.xlsx')
 # Insertion des données par blocs (plus efficace)
 for index, row in df.iterrows():
     cursor.execute("INSERT INTO Sexe(sexe_id,sexe) VALUES ( ?, ?)",
-                  (row['id'], row['sexe']))
+                  (row['id'], row['nom']))
 
 
 
@@ -402,7 +403,7 @@ conn.commit()
 # Fermer la connexion
 conn.close()
 
-"""
+
 # Activités IES
 df = pd.read_excel('activite_ies.xlsx')
 # Insertion des données par blocs (plus efficace)
@@ -414,6 +415,26 @@ for index, row in df.iterrows():
 conn.commit()
 
 # Fermer la connexion
+conn.close()
+
+#Sexe
+df = pd.read_excel('ok_sexe.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Sexe(sexe_id,sexe) VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+conn.commit()
+conn.close()
+
+
+"""
+#Trimestre
+df = pd.read_excel('trimestre.xlsx')
+# Insertion des données par blocs (plus efficace)
+for index, row in df.iterrows():
+    cursor.execute("INSERT INTO Trimestre VALUES ( ?, ?)",
+                  (row['id'], row['nom']))
+conn.commit()
 conn.close()
 
 

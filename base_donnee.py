@@ -4,7 +4,6 @@ conn = sqlite3.connect('annuiare.db')
 cursor = conn.cursor()
 #cursor.execute("DROP TABLE ValeursIndicateurs ")
 
-
 def create_tables():
     # Connect to the SQLite database (or create it if it doesn't exist)
     conn = sqlite3.connect('annuiare.db')
@@ -301,6 +300,54 @@ def nv_base():
             id_type_manifestations_culturelles INTEGER PRIMARY KEY,
             nom_type_manifestations_culturelles TEXT
         );
+        """,
+
+        """
+        CREATE TABLE IF NOT EXISTS Trimestre (
+        id_trimestre INTEGER PRIMARY KEY,
+            nom_trimestre TEXT 
+               );
+         """,
+        """
+        CREATE TABLE IF NOT EXISTS Etat_des_ouvrages(
+        id_etat_des_ouvrages INTEGER PRIMARY KEY,
+        nom_etat_des_ouvrages TEXT 
+        
+        );
+        
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_abonnement(
+        id_type_abonnnement INTEGER PRIMARY KEY,
+        nom_type_abonnnement TEXT
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_suivi(
+        id_type_suivi INTEGER PRIMARY KEY,
+        nom_type_suivi TEXT 
+        
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de _vulnerabilite(
+        id_type_de_vulnerabilite INTEGER PRIMARY KEY,
+        nom_type_de_vulnerabilite TEXT 
+        );
+        
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Type_de_prise_charge(
+        id_type_de_prise_charge INTEGER PRIMARY KEY,
+        nom_type_de_prise_charge TEXT
+        );
+        
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS Niveau(
+        id_niveau INTEGER PRIMARY KEY,
+        nom_niveau TEXT
+        );
         """
     ]
 
@@ -319,10 +366,6 @@ def nv_base():
 Exécution de la fonction 
 """
 
-import sqlite3
-
-
-import sqlite3
 
 def create_valeurs_indicateurs_table(db_name):
     conn = sqlite3.connect(db_name)
@@ -370,6 +413,22 @@ def create_valeurs_indicateurs_table(db_name):
         f_type_operateurs_des_oeuvres_esprit_id INTEGER,
         f_type_de_groupes_culturels_id INTEGER,
         f_type_de_manifestations_culturelles_id INTEGER,
+        
+        f_trimestre_id INTEGER,
+        f_etat_des_ouvrages_id INTEGER,
+        f_type_abonnement_id INTEGER,
+        f_type_suivi_id INTEGER,
+        f_type_de_vulnerabilite_id INTEGER,
+        f_type_de_prise_charge_id INTEGER,
+        f_niveau_id INTEGER,
+        FOREIGN KEY ( f_trimestre_id) REFERENCES Trimestre (id_trimestre),
+        FOREIGN KEY (f_etat_des_ouvrages_id) REFERENCES Etat_des_ouvrages (id_etat_des_ouvrages),
+        FOREIGN KEY (f_type_abonnement_id) REFERENCES Type_abonnement (id_type_abonnement),
+        FOREIGN KEY (f_type_suivi_id) REFERENCES Type_suivi (id_type_suivi),
+        FOREIGN KEY (f_type_de_vulnerabilite_id) REFERENCES Type_de_vulnerabilite (id_type_de_vulnerabilite),
+        FOREIGN KEY (f_type_de_prise_charge_id) REFERENCES Type_de_prise_charge,
+        FOREIGN KEY (f_niveau_id )REFERENCES  Niveau (id_niveau),
+        
         FOREIGN KEY (f_region_id) REFERENCES Region(region_id),
         FOREIGN KEY (f_departement_id) REFERENCES Departement(departement_id),
         FOREIGN KEY (f_sous_prefecture_id) REFERENCES SousPrefectures(sousprefect_id),

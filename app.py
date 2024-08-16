@@ -3,54 +3,123 @@ import get_object as go
 import get_domaine_condt_vie_menage as g_vie
 
 st.set_page_config(page_title="Formulaire de collecte", page_icon="📊")
-# Injecter le CSS Bootstrap et le style personnalisé
+
+
 st.markdown("""
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    
-        .custom-bold-text {
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                
+                    .custom-bold-text {
+                        font-weight: bold;
+                        color: black;
+                        font-size: 45px; 
+                    }
+                    .stButton button {
+                    background-color: orange;
+                    color: white;
+                    display: block;
+                    margin: 0 auto;
+                    font-weight: bold;
+                     }
+            
+                </style>
+            """, unsafe_allow_html=True)
+
+
+
+
+#Couleur  pour css input text label
+st.markdown("""
+                <style>
+                .stTextInput > label {
+                font-size:150%; 
+                font-weight:bold; 
+                color:white; 
+                background:linear-gradient(to bottom, #cccccc 0%, #999999 100%);
+                border: 2px;
+                border-radius: 3px;
+                } 
+                </style>
+                """, unsafe_allow_html=True)
+
+
+
+# La forme pour les labels
+st.markdown("""
+            <style>
+            div[data-baseweb="base-input"]{ 
+            
+            border: 2px;
+            border-radius: 3px;
+            }
+            
+            input[class]{
             font-weight: bold;
+            font-size:120%;
             color: black;
-            font-size: 45px; 
-        }
-        .stButton button {
-        background-color: orange;
-        color: white;
-        display: block;
-        margin: 0 auto;
-        font-weight: bold;
-         }
-
-    </style>
-""", unsafe_allow_html=True)
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
 
-
-st.markdown(
-    """
-    <style>
-    .custom-label {
-        font-size: 1.2rem;
-        color: blue;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Il marche
 st.markdown("""
-<style>
-.stNumberInput label {
-     color: blue;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center;
-}
+                <style>
 
-}
-</style>
-""", unsafe_allow_html=True)
+                .stSelectbox label {
+                  font-size:150%; 
+                font-weight:bold; 
+                color:blue; 
+                background:linear-gradient(to bottom, #cccccc 0%, #999999 100%);
+            border: 2px;
+                border-radius: 3px;
+                }
+                </style>
+                """, unsafe_allow_html=True)
+
+
+# Pour le formulaire css
+st.markdown("""
+            <style>
+            .stForm  {
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: white;
+                background: linear-gradient(to bottom, #3399ff 0%, #00ffff 90%);
+                border: 2px solid;
+                border-radius: 3px;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+
+# Pour les paragraphes
+st.markdown(
+                """
+                <style>
+                .custom-label {
+                    font-size: 1.2rem;
+                    color: blue;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
+
+#Couleur du label number
+st.markdown("""
+        <style>
+        .stNumberInput label {
+             color: blue;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: center;
+             background:linear-gradient(to bottom, #cccccc 0%, #999999 100%);
+                border: 2px;
+                border-radius: 3px;
+        }
+        
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 
 st.markdown("""
@@ -72,41 +141,34 @@ st.markdown("""
 
 
 
-st.markdown("""
-                <style>
-
-                .stSelectbox label {
-                  color: blue;
-                }
-                </style>
-                """, unsafe_allow_html=True)
-
 
 def dom_condt_vie_menage():
+
     st.markdown("<h2 class='text-center text-primary custom-bold-text'>Formulaire de collecte</h2>",
                 unsafe_allow_html=True)
 
     # Entrée du code d'entité géographique avec le cadre bleu
-    with st.expander("Cliquer ici ",expanded=True):
+    with st.expander("Cliquer ici", expanded=True):
 
+        # Créer quatre colonnes
+        col1, col2, col3, col4 = st.columns(4)
 
+        with col1:
+            annee = st.number_input('Année de collecte', min_value=2000, max_value=2100, step=1, key="year_g")
 
-        annee = st.number_input('Année de collecte', min_value=2000, max_value=2100, step=1, key="year_g")
-
-        code_entite = st.number_input('Le code de l\'entité géographique', min_value=0, step=1)
+        with col2:
+            code_entite = st.number_input("Le code de l'entité géographique", min_value=0, step=1)
 
         entity_type, entity_name = go.get_geographical_entity_name(code_entite)
         if entity_type and entity_name:
-            st.markdown(f'<p class="custom-label"> {entity_type} : {entity_name} </p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="custom-label">{entity_type} : {entity_name}</p>', unsafe_allow_html=True)
 
-
-
-
+        # Variables pour stocker les identifiants géographiques
         region_id = None
         department_id = None
         sous_prefecture_id = None
 
-        # Pour récupérer le code entité géographique
+        # Récupérer le code entité géographique
         if go.get_region_name(code_entite):
             region_id = code_entite
         elif go.get_department_name(code_entite):
@@ -114,52 +176,58 @@ def dom_condt_vie_menage():
         elif go.get_sous_prefecture_name(code_entite):
             sous_prefecture_id = code_entite
 
-        # Section indicateur
+        with col3:
+            # Section indicateur
+            ind = st.number_input("Le code indicateur", min_value=0, step=1, key="ind1")
 
-        ind = st.text_input("Le code indicateur",key="ind1")
-
-        # Custom CSS
-
+        # Récupérer l'indicateur
         indicator = go.get_indicators(ind)
-
 
         level_of_disaggregation = None  # Initialize with None
 
         if indicator:
             id_indicateur, nom_indicateur = indicator
 
+
             st.markdown(f'<p class="custom-label">Indicateur : {nom_indicateur}</p>', unsafe_allow_html=True)
 
             if 2001 <= id_indicateur <= 2029:
-
-                desagration_list = ["Choisir le niveau désagrégation",  "Cycle","Niveau préscolaire", "Niveau primaire", "Niveau Secondaire 1er cycle",
+                desagration_list = [" ", "Cycle", "Niveau préscolaire", "Niveau primaire",
+                                    "Niveau Secondaire 1er cycle",
                                     "Niveau Secondaire 2nd cycle", "Niveau Technique", "Niveau Supérieur",
-                                    "Niveau Professionnel",
-                                     "Type d'examen","Sexe"]
+                                    "Niveau Professionnel", "Type d'examen", "Sexe"]
 
+                with col4:
+                    level_of_disaggregation = st.selectbox("Choisir le niveau désagrégation", desagration_list)
 
-                level_of_disaggregation = st.selectbox("Choisir le niveau désagrégation", desagration_list)
             elif 1001 <= id_indicateur <= 1024:
                 st.write("---------------------")
+                desagration_list = ["", "Sexe", "Groupe d'âge"]
 
-                desagration_list = ["","Sexe", "Groupe d'âge"]
+                with col4:  # Placer le selectbox dans la première colonne
+                    level_of_disaggregation = st.selectbox("Choisir le niveau désagrégation", desagration_list)
 
-                level_of_disaggregation = st.selectbox(" Choisir le niveau désagrégation", desagration_list)
-
-
-            elif 2030<= id_indicateur <= 2102:
+            elif 2030 <= id_indicateur <= 2102:
                 st.write("---------------------")
+                desagration_list = [" ", "Infrastructures sanitaires", "Lieu d'accouchement", "Etat vaccinal",
+                                    "Types de vaccination", "Pathologie", "Tranche d'âge", "Maladies du PEV",
+                                    "Maladies infectieuses", "Infections respiratoire aigüe", "Maladies IST",
+                                    "Type de Maladie", "Activités IEC", "Services Médicaux"]
 
+            elif 7001 <= id_indicateur <= 7023:
+                st.write("---------------------")
+                desagration_list = [" ", "Trimestre","Etat des ouvrages","Type d'ouvrages","Type d'abonnement","Types de suivi",
+                                    "Types de vulnérabilités","Types de prises en charge ","Niveau"]
 
-                desagration_list = [" ", "Infrastructures sanitaires","Lieu d'accouchement","Etat vaccinal","Types de vaccination",
-                                    "Pathologie","Tranche d'âge","Maladies du PEV","Maladies infectieuses",
-                                    "Infections respiratoire aigüe","Maladies IST","Type de Maladie","Activités IEC","Services Médicaux"]
+                with col4:  # Placer le selectbox dans la première colonne
+                    level_of_disaggregation = st.selectbox("Niveau désagrégation", desagration_list)
 
-                level_of_disaggregation = st.selectbox(" Niveau désagrégation", desagration_list)
             else:
-                st.warning(f"Le niveau de desagrégation pour cet indicateur \n{nom_indicateur} n'est pas encore disponible")
+                st.warning(
+                    f"Le niveau de desagrégation pour cet indicateur {nom_indicateur} n'est pas encore disponible")
         else:
             st.warning("Indicateur non trouvé")
+
     #st.markdown('<p class="custom-label">------------------------------------------------------------</p>', unsafe_allow_html=True)
 
 
@@ -188,7 +256,8 @@ def dom_condt_vie_menage():
 
     sexes = go.get_sexes()
     sexe_options1 =create_options(sexes)
-    sexe_options2 = {'': None, **create_options(sexes)}
+    #sexe_options2 = {'': None, **create_options(sexes)}
+    sexe_options2 =create_options(sexes)
 
     # Formulaire pour l'insertion des données
     if entity_type and entity_name and level_of_disaggregation:
@@ -660,7 +729,7 @@ def dom_condt_vie_menage():
 
                     with col:
 
-                        valeur = st.number_input(f"{grpe_age} ", min_value=0, step=1, key=f"value_{grpe_age_id}")
+                        valeur = st.number_input(f"{grpe_age} ans ", min_value=0, step=1, key=f"value_{grpe_age_id}")
 
                     # Ajouter les valeurs dans les listes respectives
                     valeurs.append(valeur)
@@ -1224,6 +1293,51 @@ def dom_condt_vie_menage():
                             service_medicaux_id=service_medic_id
                         )
                     st.success("Valeurs pour Services Médicaux enregistrées avec succès.")
+
+
+
+            # Protection socaile
+
+            elif level_of_disaggregation == "Trimestre":
+                trim=g_vie.get_trimestre()
+                trimmestre_option=create_options(trim)
+
+                valeurs = []
+                annees = []
+                trimestre_ids = []
+
+                col1, col2, col3, col4 = st.columns(4)
+
+                for idx, (trimestre, trimestre_id) in enumerate(trimmestre_option.items()):
+                    if idx % 4 == 0:
+                        col = col1
+                    elif idx % 4 == 1:
+                        col = col2
+                    elif idx % 4 == 2:
+                        col = col3
+                    else:
+                        col = col4
+
+                    with col:
+
+                        valeur = st.number_input(f" {trimestre}", min_value=0, step=1, key=f"value_{trimestre_id}")
+
+                    valeurs.append(valeur)
+                    annees.append(annee)
+                    trimestre_ids.append(trimestre_id)
+
+                if st.form_submit_button(f"Enregistrer "):
+                    for trimestre_id, valeur, annee in zip(trimestre_ids, valeurs, annees):
+                        g_vie.insert_value_cdt_vie(
+                            indicator_id=id_indicateur,
+                            region_id=region_id,
+                            department_id=department_id,
+                            sous_prefecture_id=sous_prefecture_id,
+                            valeur=valeur,
+                            annee=annee,
+                            trimestre_id=trimestre_id  # Utilisez trimestre_id de la boucle
+                        )
+                    st.success("Enregistrement avec succès.")
 
     return
 

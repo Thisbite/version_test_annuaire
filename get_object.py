@@ -21,7 +21,7 @@ def get_sexes():
     try:
         with sqlite3.connect('annuiare.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT sexe_id, sexe FROM Sexe")
+            cursor.execute("SELECT sexe_id, sexe FROM Sexe ORDER BY sexe_id DESC")
             sexes = cursor.fetchall()
     except sqlite3.Error as e:
         print(f"Database error: {e}")

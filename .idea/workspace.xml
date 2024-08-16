@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8706a631-834e-4449-80d1-a30462d91e70" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/file_xlsx/.~lock.niveaux_désagrégation.xlsx#" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file_xlsx/ok_sexe.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file_xlsx/sexe_ok.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file_xlsx/trimestre.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/annuiare.db" beforeDir="false" afterPath="$PROJECT_DIR$/annuiare.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_donnee.py" beforeDir="false" afterPath="$PROJECT_DIR$/base_donnee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_xlsx/niveaux_désagrégation.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/niveaux_désagrégation.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_xlsx/register_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_xlsx/register_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_domaine_condt_vie_menage.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_domaine_condt_vie_menage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sante.py" beforeDir="false" afterPath="$PROJECT_DIR$/sante.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +53,7 @@
     &quot;Python.base_donnee.executor&quot;: &quot;Run&quot;,
     &quot;Python.enregistrement.executor&quot;: &quot;Run&quot;,
     &quot;Python.get_domaine_condt_vie_menage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_object.executor&quot;: &quot;Run&quot;,
     &quot;Python.register_data.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
